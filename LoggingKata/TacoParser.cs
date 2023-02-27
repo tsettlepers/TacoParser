@@ -18,6 +18,8 @@ namespace LoggingKata
         {  
             thisLogger = activeLogger; 
         }
+
+        //WHAT IS GAINED BY MAKING ITRACKABLE AN INTERFACE INSTEAD OF A SIMPLE CLASS?
         
         public ITrackable Parse(string line, bool withLogging=true)
         {
@@ -26,6 +28,7 @@ namespace LoggingKata
 
             if (errCounter > 5)
             {
+                if (withLogging) thisLogger.LogFatal("Error count exceeded.");
                 throw new Exception("Error count exceeded.");
             }
             else if (cells.Length != 3)                                      // If your array.Length is less than 3, something went wrong
